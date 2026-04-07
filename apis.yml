@@ -1,7 +1,12 @@
 aid: dcp-midstream-partners
-url: https://raw.githubusercontent.com/api-evangelist/dcp-midstream-partners/refs/heads/main/apis.yml
+url: 
+  https://raw.githubusercontent.com/api-evangelist/dcp-midstream-partners/refs/heads/main/apis.yml
 modified: '2026-03-24'
 apis: []
 common:
   - type: Website
     url: https://www.dcp-midstream-partners.com
+description: >-
+  DCP Midstream Partners is a midstream energy company that gathers, processes, transports,
+  stores, and markets natural gas and natural gas liquids in major U.S. producing
+  regions.
