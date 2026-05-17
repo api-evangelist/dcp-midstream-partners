@@ -16,7 +16,7 @@ tags:
 created: '2025-01-08'
 modified: '2026-04-28'
 specificationVersion: '0.19'
-xType: company
+kind: company
 description: >-
   DCP Midstream Partners is a midstream energy company that gathers,
   processes, transports, stores, and markets natural gas and natural gas
