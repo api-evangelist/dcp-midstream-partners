@@ -28,6 +28,8 @@ description: >-
   rather than a self-service API.
 apis: []
 common:
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/dcp-midstream
   - type: Website
     url: https://www.phillips66.com/midstream/dcp/
   - type: Customer Portal
