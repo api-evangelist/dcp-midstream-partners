@@ -1,0 +1,16 @@
+generated: '2026-09-05'
+method: searched
+source: https://www.phillips66.com/midstream/customers/
+note: >-
+  No published API means no published rate limits. There is no developer portal,
+  no API reference and no throttling documentation on any DCP or Phillips 66
+  Midstream surface, and no anonymous API response could be observed to read
+  runtime headers from — every customer system (FITS, TIPS/MyQuorum, Aligne)
+  answers only behind a sign-in. limit_count 0 is an honest measurement of an
+  absent surface, not an unchecked field.
+limit_count: 0
+limits: []
+headers: []
+exhaustion_status_code: null
+retry_after: null
+observed_on_live_response: false

@@ -1,0 +1,67 @@
+generated: '2026-09-05'
+method: probed
+source: well-known/dcp-midstream-partners-fits-openid-configuration.json
+note: >-
+  Assertions are read from the two OpenID Connect discovery documents Phillips 66
+  Midstream's Azure AD B2C tenant serves for the DCP customer systems. There is
+  no OpenAPI, GraphQL, AsyncAPI or SOAP contract in this repo, so every
+  contract-shaped standard below is recorded as not-conformant on the honest
+  ground that no contract is published — not on a failed test.
+standards:
+  - id: oidc
+    conforms: true
+    evidence: >-
+      https://azrmdstadb2cr5.b2clogin.com/azrmdstadb2cr5.onmicrosoft.com/B2C_1A_FITS_SIGNUPSIGNIN/v2.0/.well-known/openid-configuration
+      returns HTTP 200 with issuer, authorization_endpoint, token_endpoint,
+      jwks_uri and RS256 id_token signing — a complete OIDC discovery document.
+  - id: oauth2
+    conforms: true
+    evidence: >-
+      Authorization Code flow with PKCE (code_challenge_method=S256) on the
+      published authorize/token endpoints; observed in the FITS sign-in link on
+      https://www.phillips66.com/midstream/customers/
+  - id: rfc8414-oauth-authorization-server-metadata
+    conforms: false
+    evidence: /.well-known/oauth-authorization-server returns 404 on every host probed
+  - id: rfc9116-security-txt
+    conforms: false
+    evidence: /.well-known/security.txt returns 404 on www.phillips66.com
+  - id: openapi
+    conforms: false
+    evidence: no OpenAPI or Swagger document served on any known host (see x-coverage)
+  - id: asyncapi
+    conforms: false
+    evidence: no event, streaming or webhook surface published
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: no public API, so no error envelope is published
+  - id: mcp
+    conforms: false
+    evidence: no MCP server published or discoverable
+  - id: a2a
+    conforms: false
+    evidence: /.well-known/agent-card.json and /.well-known/agent.json 404 on every readable host
+  - id: apis-json
+    conforms: false
+    evidence: /apis.json, /apis.yml and /.well-known/apis.json all 404 on www.phillips66.com
+domain_standards:
+  note: >-
+    REWARD-ONLY and genuinely not applicable here. The midstream natural-gas
+    market does have interchange standards — NAESB WGQ EDI/EDM for nominations
+    and invoicing, FERC Order 587 electronic bulletin boards, and Quorum's
+    TIPS/PGAS allocation formats — and DCP demonstrably operates systems in that
+    family (Aligne scheduling, IPW informational postings for Centana, DCP
+    Guadalupe, DCP Raptor, EasTrans and Jackson, TIPS/MyQuorum allocations).
+    But NONE of those declare themselves in any contract we can read: the
+    postings and the schedules sit behind the Aligne and MyQuorum logins. A
+    domain-standard conformance recorded from prose on a marketing page would be
+    a claim we invented, so nothing is asserted.
+  candidates_not_verified:
+    - {id: naesb-wgq-edi, reason: 'operated behind the Aligne login; no machine-readable declaration'}
+    - {id: ferc-order-587-ebb, reason: 'IPW informational postings referenced but not reachable anonymously'}
+compliance_program:
+  published: false
+  note: >-
+    No trust center, certification page or compliance program was found for the
+    DCP/Midstream surface (probe-security-programs.py: vdp=none trust=none), so
+    no Compliance pointer is emitted.

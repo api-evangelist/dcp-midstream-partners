@@ -1,0 +1,89 @@
+generated: '2026-09-05'
+method: probed
+source: >-
+  https://azrmdstadb2cr5.b2clogin.com/azrmdstadb2cr5.onmicrosoft.com/B2C_1A_FITS_SIGNUPSIGNIN/v2.0/.well-known/openid-configuration
+docs: https://www.phillips66.com/midstream/customers/
+note: >-
+  DCP Midstream publishes NO developer API and therefore no API authentication
+  contract. What it does publish is the identity layer in front of its
+  login-gated customer systems, and that layer is machine-readable: two OpenID
+  Connect discovery documents on Phillips 66 Midstream's own Azure AD B2C tenant.
+  Everything below is read from those documents and from the sign-in links on the
+  Midstream customer-tools page — nothing here is derived from an OpenAPI,
+  because none exists. This profile describes HUMAN sign-in to customer portals,
+  not programmatic API access; no client-credentials or machine-to-machine flow
+  is advertised anywhere on the public surface.
+summary:
+  types: [openIdConnect]
+  api_key_in: []
+  oauth2_flows: [authorizationCode]
+  pkce: true
+  machine_to_machine: false
+  developer_api_auth: none
+schemes:
+  - name: fits-b2c
+    type: openIdConnect
+    system: FITS (Field Information & Technology Services)
+    application: https://fits.ephillips66.com/
+    openIdConnectUrl: https://azrmdstadb2cr5.b2clogin.com/azrmdstadb2cr5.onmicrosoft.com/B2C_1A_FITS_SIGNUPSIGNIN/v2.0/.well-known/openid-configuration
+    issuer: https://azrmdstadb2cr5.b2clogin.com/e1fdebb4-638c-48e6-b771-2413e270655c/v2.0/
+    provider: Azure AD B2C
+    policy: B2C_1A_FITS_SIGNUPSIGNIN
+    flows:
+      - flow: authorizationCode
+        authorizationUrl: https://azrmdstadb2cr5.b2clogin.com/azrmdstadb2cr5.onmicrosoft.com/b2c_1a_fits_signupsignin/oauth2/authorize
+        tokenUrl: https://azrmdstadb2cr5.b2clogin.com/azrmdstadb2cr5.onmicrosoft.com/b2c_1a_fits_signupsignin/oauth2/token
+        pkce: S256
+    jwks_uri: https://azrmdstadb2cr5.b2clogin.com/azrmdstadb2cr5.onmicrosoft.com/b2c_1a_fits_signupsignin/discovery/keys
+    end_session_endpoint: https://azrmdstadb2cr5.b2clogin.com/azrmdstadb2cr5.onmicrosoft.com/b2c_1a_fits_signupsignin/oauth2/logout
+    scopes_supported: [openid]
+    id_token_signing_alg_values_supported: [RS256]
+    subject_types_supported: [pairwise]
+    claims_supported:
+      - email
+      - sub
+      - tid
+      - given_name
+      - family_name
+      - name
+      - businessPhone
+      - companyName
+      - newUser
+      - termsOfUseVersionAccepted
+    sources: [well-known/dcp-midstream-partners-fits-openid-configuration.json]
+  - name: aligne-b2c
+    type: openIdConnect
+    system: Aligne — natural gas scheduling, customer activities & informational postings
+    application: https://alnlogin.ephillips66.com/
+    openIdConnectUrl: https://azrmdstadb2cr5.b2clogin.com/azrmdstadb2cr5.onmicrosoft.com/B2C_1A_ALIGNEAPP_SIGNUPSIGNIN/v2.0/.well-known/openid-configuration
+    issuer: https://azrmdstadb2cr5.b2clogin.com/e1fdebb4-638c-48e6-b771-2413e270655c/v2.0/
+    provider: Azure AD B2C
+    policy: B2C_1A_ALIGNEAPP_SIGNUPSIGNIN
+    relying_party: https://azrmdstadb2cr5.onmicrosoft.com/AligneApp
+    flows:
+      - flow: authorizationCode
+        authorizationUrl: https://azrmdstadb2cr5.b2clogin.com/azrmdstadb2cr5.onmicrosoft.com/b2c_1a_aligneapp_signupsignin/oauth2/authorize
+        tokenUrl: https://azrmdstadb2cr5.b2clogin.com/azrmdstadb2cr5.onmicrosoft.com/b2c_1a_aligneapp_signupsignin/oauth2/token
+    scopes_supported: [openid]
+    claims_supported:
+      - SubjectNamingInfo
+      - objectId
+      - businessPhone
+      - companyName
+      - newUser
+      - termsOfUseVersionAccepted
+    sources: [well-known/dcp-midstream-partners-aligne-openid-configuration.json]
+other_gated_systems:
+  - name: TIPS / MyQuorum (plant accounting, CDP monthly allocations, revenue reports)
+    url: https://revenuereporting.ephillips66.com/MYQUORUM_PROD
+    auth: HTTP 401 on every anonymous request; scheme not published
+  - name: Midstream Customer Service Portal (ServiceNow)
+    url: https://p66.service-now.com/midstreamcsm
+    auth: ServiceNow-hosted; vendor-operated, not a DCP-authored contract
+access_request:
+  process: Access is requested from a DCP Gas Logistics scheduler or the support desks
+  contacts:
+    - fits@p66.com
+    - NaturalGasScheduling@p66.com
+  phone: 1-800-909-3487
+  self_service_signup: false

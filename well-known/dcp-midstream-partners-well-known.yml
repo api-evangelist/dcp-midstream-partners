@@ -1,0 +1,114 @@
+generated: '2026-09-05'
+method: probed
+source: live HTTPS probes of every host this record knows, 2026-09-05
+note: >-
+  DCP Midstream was fully integrated into Phillips 66 on 2023-04-01 and
+  dcpmidstream.com now 301s to https://www.phillips66.com/midstream/dcp/, so the
+  Phillips 66 hosts ARE this company's hosts. The corporate web hosts serve no
+  /.well-known/ documents at all. The two real hits are OpenID Connect discovery
+  documents for the Azure AD B2C tenant that fronts the DCP/Midstream customer
+  systems (FITS and Aligne) — the tenant azrmdstadb2cr5.onmicrosoft.com is
+  Phillips 66 Midstream's own ("azr-mdst-adb2c"), its two sign-in policies are
+  named for those two systems, and the FITS policy's registered redirect_uri is
+  https://fits.ephillips66.com/. b2clogin.com is Microsoft's hosted auth origin,
+  the same legitimate third-host auth-server case as an authkit.app deployment.
+hosts:
+  - host: https://www.phillips66.com
+    documents:
+      - {path: /.well-known/security.txt, status: 404}
+      - {path: /.well-known/openid-configuration, status: 404}
+      - {path: /.well-known/oauth-authorization-server, status: 404}
+      - {path: /.well-known/oauth-protected-resource, status: 404}
+      - {path: /.well-known/api-catalog, status: 404}
+      - {path: /.well-known/ai-plugin.json, status: 404}
+      - {path: /.well-known/agent-card.json, status: 404}
+      - {path: /.well-known/agent.json, status: 404}
+      - {path: /.well-known/aauth-resource.json, status: 404}
+      - {path: /.well-known/apis.json, status: 404}
+      - {path: /apis.json, status: 404}
+      - {path: /apis.yml, status: 404}
+    path_echo_control: passed
+    soft_404_control: {path: /.well-known/dcp-midstream-partners-negative-control-7f3ab91c.json, status: 404}
+    hit_count: 0
+  - host: https://phillips66.com
+    note: apex 301s to www.phillips66.com for every path; not probed separately
+    documents:
+      - {path: /.well-known/security.txt, status: 301}
+      - {path: /.well-known/openid-configuration, status: 301}
+      - {path: /apis.json, status: 301}
+    hit_count: 0
+  - host: https://investor.phillips66.com
+    note: >-
+      Cloudflare interstitial ("Just a moment...") answers 403 to every path
+      including the negative control, for our crawler and a browser UA alike.
+      The host is live — the Phillips 66 site links deep pages on it — but its
+      /.well-known/ surface is unreadable to us, not proven absent.
+    documents:
+      - {path: /.well-known/security.txt, status: 403}
+      - {path: /.well-known/openid-configuration, status: 403}
+      - {path: /.well-known/agent-card.json, status: 403}
+      - {path: /apis.json, status: 403}
+    path_echo_control: inconclusive
+    hit_count: 0
+  - host: https://fits.ephillips66.com
+    note: >-
+      SPA catch-all. Every path, including the negative control, returns HTTP 200
+      with the byte-identical 31,002-byte HTML shell. No document exists here;
+      none of these 200s is a hit.
+    documents:
+      - {path: /.well-known/security.txt, status: 200, note: 'SPA shell HTML, not a document'}
+      - {path: /.well-known/openid-configuration, status: 200, note: 'SPA shell HTML, not a document'}
+      - {path: /.well-known/agent-card.json, status: 200, note: 'SPA shell HTML, not a document'}
+      - {path: /openapi.json, status: 200, note: 'SPA shell HTML, not a spec'}
+    path_echo_control: failed
+    soft_404_control: {path: /.well-known/dcp-midstream-partners-negative-control-7f3ab91c.json, status: 200, bytes: 31002}
+    hit_count: 0
+  - host: https://alnlogin.ephillips66.com
+    note: >-
+      SPA catch-all, same failure mode — every path returns the same ~166KB HTML
+      shell, negative control included.
+    documents:
+      - {path: /.well-known/security.txt, status: 200, note: 'SPA shell HTML, not a document'}
+      - {path: /.well-known/openid-configuration, status: 200, note: 'SPA shell HTML, not a document'}
+      - {path: /.well-known/agent-card.json, status: 200, note: 'SPA shell HTML, not a document'}
+    path_echo_control: failed
+    soft_404_control: {path: /.well-known/dcp-midstream-partners-negative-control-7f3ab91c.json, status: 200, bytes: 166077}
+    hit_count: 0
+  - host: https://revenuereporting.ephillips66.com
+    note: >-
+      TIPS/MyQuorum revenue reporting. HTTP 401 on every path — an authentication
+      wall, not an absence. Nothing readable anonymously.
+    documents:
+      - {path: /.well-known/security.txt, status: 401}
+      - {path: /.well-known/openid-configuration, status: 401}
+      - {path: /.well-known/agent-card.json, status: 401}
+    path_echo_control: inconclusive
+    hit_count: 0
+  - host: https://azrmdstadb2cr5.b2clogin.com
+    note: >-
+      Phillips 66 Midstream's Azure AD B2C tenant, discovered from the sign-in
+      links on https://www.phillips66.com/midstream/customers/. Documents are
+      policy-scoped, so the path carries the policy name. Negative control (a
+      non-existent policy) correctly returns 404, and the tenant root returns
+      404 — this host does not echo paths.
+    documents:
+      - path: /azrmdstadb2cr5.onmicrosoft.com/B2C_1A_FITS_SIGNUPSIGNIN/v2.0/.well-known/openid-configuration
+        status: 200
+        file: dcp-midstream-partners-fits-openid-configuration.json
+      - path: /azrmdstadb2cr5.onmicrosoft.com/B2C_1A_ALIGNEAPP_SIGNUPSIGNIN/v2.0/.well-known/openid-configuration
+        status: 200
+        file: dcp-midstream-partners-aligne-openid-configuration.json
+      - {path: /azrmdstadb2cr5.onmicrosoft.com/v2.0/.well-known/openid-configuration, status: 404}
+    path_echo_control: passed
+    soft_404_control:
+      path: /azrmdstadb2cr5.onmicrosoft.com/B2C_1A_DCP_NEGATIVE_CONTROL_7F3AB91C/v2.0/.well-known/openid-configuration
+      status: 404
+    hit_count: 2
+summary:
+  hosts_probed: 7
+  documents_served: 2
+  document_types: [openid-configuration]
+  security_txt: false
+  api_catalog: false
+  agent_card: false
+  apis_json: false

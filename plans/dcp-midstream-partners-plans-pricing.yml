@@ -1,0 +1,34 @@
+generated: '2026-09-05'
+method: searched
+source: https://www.phillips66.com/midstream/tariffs/
+note: >-
+  DCP Midstream publishes no API and therefore no API plans, tiers or developer
+  pricing — plan_count is 0 as a measured fact, not an omission. Its commercial
+  surface is a regulated one: FERC-filed pipeline tariffs and joint-tariff
+  proration policy, published as PDFs, plus a tariff search by origin and
+  destination. Those are transportation rates for shippers, not subscription
+  plans for API consumers, so they are recorded here as context rather than as
+  plans[]. Access to the customer systems (FITS, TIPS/MyQuorum, Aligne) is not
+  sold self-service; it is granted by a DCP Gas Logistics scheduler.
+plan_count: 0
+plans: []
+pricing_model: contract-and-tariff
+self_service_signup: false
+free_tier: false
+public_pricing_page: false
+regulated_rate_surface:
+  - name: Midstream tariffs
+    url: https://www.phillips66.com/midstream/tariffs/
+    status: 200
+  - name: Tariff search by origin/destination
+    url: https://www.phillips66.com/midstream/tariffs/tariff-search-by-origin-destination/
+    status: 200
+  - name: Tariff search general information
+    url: https://www.phillips66.com/midstream/tariffs/tariff-search-general-info/
+    status: 200
+  - name: All active P66-filed tariffs (Report Series 6A)
+    url: https://phillips66.widen.net/s/ghkhrprhbd/report-series-6a_all-active-p66-filed-tariffs
+  - name: FERC index report (Report Series 8J)
+    url: https://phillips66.widen.net/s/htq6g9qccf/report-series-8j_ferc-index-report
+  - name: Joint tariff system proration policy
+    url: https://phillips66.widen.net/s/8vrl99wqg8/joint-tariff-system-proration-policy-2019-10-23-final

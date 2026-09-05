@@ -36,7 +36,7 @@ tags:
   - Oil and Gas
   - Pipelines
 created: '2025-01-08'
-modified: '2026-04-28'
+modified: '2026-09-05'
 specificationVersion: '0.23'
 kind: company
 description: >-
@@ -52,16 +52,40 @@ apis: []
 common:
   - type: DomainSecurity
     url: security/dcp-midstream-partners-domain-security.yml
+  - type: WellKnown
+    url: well-known/dcp-midstream-partners-well-known.yml
+  - type: Authentication
+    url: authentication/dcp-midstream-partners-authentication.yml
+  - type: Conformance
+    url: conformance/dcp-midstream-partners-conformance.yml
+  - type: Plans
+    url: plans/dcp-midstream-partners-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/dcp-midstream-partners-rate-limits.yml
+  - type: LLMsTxt
+    url: llms/dcp-midstream-partners-llms.txt
   - type: LinkedIn
     url: https://www.linkedin.com/company/dcp-midstream
   - type: Website
     url: https://www.phillips66.com/midstream/dcp/
+  - type: Support
+    url: https://www.phillips66.com/midstream/contact/
+  - type: HelpCenter
+    url: https://p66.service-now.com/midstreamcsm
+  - type: Login
+    url: https://fits.ephillips66.com/
+  - type: Blog
+    url: https://www.phillips66.com/newsroom/category/midstream/
+  - type: PrivacyPolicy
+    url: https://www.phillips66.com/privacy-statement/
+  - type: TermsOfService
+    url: https://www.phillips66.com/terms-and-conditions/
   - type: Customer Portal
-    url: https://www.phillips66.com/midstream/dcp/customers/
+    url: https://www.phillips66.com/midstream/customers/
   - type: Tariffs
-    url: https://www.phillips66.com/midstream/dcp/customers/tariffs/
+    url: https://www.phillips66.com/midstream/tariffs/
   - type: Tax Portal
-    url: https://www.phillips66.com/midstream/dcp/customers/tax-portal/
+    url: https://www.phillips66.com/midstream/tax-portal/
   - type: Investor Relations
     url: https://investor.phillips66.com/
   - type: Sustainability
@@ -79,3 +103,31 @@ integrations:
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
+x-enrichment:
+  date: '2026-09-05'
+  status: minimal
+  artifacts_added: 8
+  pass: local-v3
+x-coverage:
+  state: none
+  reason: no-developer-program
+  detail: >-
+    Phillips 66 runs real first-party software for DCP Midstream customers — FITS for
+    wellhead and gathering data, TIPS/MyQuorum for allocations and revenue, Aligne for
+    gas scheduling — but every one is an end-user web/mobile portal reached through an
+    Azure AD B2C sign-in, and the Midstream customer-tools page that indexes them names
+    no API, no data feed and no developer contact; the only machine-readable documents
+    on the entire estate are the two OIDC discovery documents fronting those logins.
+  evidence:
+    - url: https://www.phillips66.com/midstream/customers/
+      status: 200
+    - url: https://www.phillips66.com/openapi.json
+      status: 404
+    - url: https://www.phillips66.com/.well-known/api-catalog
+      status: 404
+    - url: https://azrmdstadb2cr5.b2clogin.com/azrmdstadb2cr5.onmicrosoft.com/B2C_1A_FITS_SIGNUPSIGNIN/v2.0/.well-known/openid-configuration
+      status: 200
+  checked: '2026-09-05'
+x-parent: phillips-66
+x-relationship: acquisition
+x-acquired: 2023
