@@ -1,7 +1,9 @@
 ---
 title: DCP Midstream Benefits from Eagle Ford, DJ Basin Assets in ...
 url: https://www.industrialinfo.com/news/article/dcp-midstream-benefits-from-eagle-ford-dj-basin-assets-in-2014-puts-2015-growth-capex-at-300-million--246924
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"DCP Midstream Partners" press release artificial intelligence'
 position: 4
 source: serpapi-google

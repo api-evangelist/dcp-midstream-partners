@@ -1,7 +1,9 @@
 ---
 title: DCP Midstream Sinks $85M Into Texas Pipeline Project
 url: https://www.law360.com/articles/329514/dcp-midstream-sinks-85m-into-texas-pipeline-project
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"DCP Midstream Partners" press release artificial intelligence'
 position: 3
 source: serpapi-google

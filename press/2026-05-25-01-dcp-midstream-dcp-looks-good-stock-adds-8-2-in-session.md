@@ -1,7 +1,9 @@
 ---
 title: 'DCP Midstream (DCP) Looks Good: Stock Adds 8.2% in Session'
 url: https://finance.yahoo.com/news/dcp-midstream-dcp-looks-good-124612103.html
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"DCP Midstream Partners" press release artificial intelligence'
 position: 1
 source: serpapi-google
